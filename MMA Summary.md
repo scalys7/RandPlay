@@ -46,7 +46,7 @@ Each pattern is defined by the following line:
     to start a note at the start of a bar you use “1”, the second beat would be “2”, the fourth     “4”, etc.
  - Note length; e.g., 1 whole, 2 half etc. 
  - Volume - the MIDI velocity to use for the specified note; ranges from 0 to 127.
- -  The end of the pattern definition is indicated by the end-of-line.
+ - The end of the pattern definition is indicated by the end-of-line.
  
 > The pattern names “z” or “Z” and “-” are also reserved.
 
