@@ -2,8 +2,7 @@ from random import randint,choice
 from os import listdir
 from os.path import isfile, join
 import os
-#keys = ['A','A#','B','C','C#','D','D#','E','F','F#','G','G#']
-keys = ['A','B','C','D','E','F','G'] #TODO: why are # causing a problem?
+keys = ['A','A#','B','C','C#','D','D#','E','F','F#','G','G#']
 majorKeyChords = ["I","ii","iii","IV","V7","vi","vii0"]
 grooves = [f.split('.')[0] for f in listdir('''C:\MMA\Lib\stdlib''') if isfile(join('''C:\MMA\Lib\stdlib''', f)) and f.endswith('mma')]
 
