@@ -6,7 +6,14 @@ scales = majorScales + minorScales
 majorKeyBaseChords = ["I", "ii", "iii", "IV", "V7", "vi", "vii0"]
 minorKeyBaseChords = ["i", "ii0", "III", "iv", "V7", "VI", "VII"]
 
+def key(scale):
+    return scale.split(' ')[0]
 
+def relativeScale(scale):
+    if(isMinor(scale)):
+        return keys[(keys.index(key(scale)) + 3) % len(keys)] + " major"
+    else:
+        return keys[(keys.index(key(scale)) + 9) % len(keys)] + " minor"
 
 def isMinor(scale):
     return scale.endswith('minor')
@@ -27,4 +34,5 @@ def predominantChords(scale):
 
 def tonic(scale):
     return scaleChords(scale)[0]
+
 timeSignatures = [2,3,4,5/2.0,7/2.0] #in quarter notes
