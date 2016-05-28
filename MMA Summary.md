@@ -35,11 +35,12 @@ Patterns can be defined for BASS, WALK, CHORD, ARPEGGIO and DRUM tracks.
 
 ###Definition###
 Each pattern is defined by the following line:
->> [Track] DEFINE [Position] [Duration] [Volume]
+>> [Track] DEFINE [Start] [Duration] [Volume]
 
 >E.g.,
 >>Drum Define S1 1 0 50
 
+ - Start is when to play the note; 1 is the first bit, 2 is the second etc. 
  -  A unique label to identify the pattern. This is case-insensitive. 
  -  A series of note definitions. Each set in the series is delimited with a “;”.
  -  When to start the note. This is expressed as a beat offset.
