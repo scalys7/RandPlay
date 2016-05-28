@@ -1,6 +1,6 @@
 from random import choice,uniform
 
-CHORD_VOICES = ["EPiano"]
+CHORD_VOICES = ["EPiano"] #TODO - add all fitting chord voices
 
 
 
@@ -11,13 +11,16 @@ def createGroove(grooveName, timeSig):
     return grooveDefinition
 
 def generateChordSeq(timeSig):
-    numberOfNotes = choice(range(int(timeSig/2),int(timeSig))) + 1
-    possibleStarts = range(0,int(timeSig)) #TODO - fix halfs
+    numberOfNotes = choice(range(int(timeSig/2),int(timeSig))) + 1 #TODO - fix halfs (if time sig is a float)
+    possibleStarts = range(1,int(timeSig) + 1) #TODO - fix halfs (if time sig is a float)
+
     seq = ""
-    for i in range(0,numberOfNotes):
+    seq += "%d %d %d;" % (1, timeSig, choice(range(60, 100)))  # We that every will box start with a note
+    possibleStarts.remove(1)
+    for i in range(1,numberOfNotes):
         randomStart = choice(possibleStarts)
         possibleStarts.remove(randomStart)
-        seq += "%d %d %d;"%(randomStart,choice(range(1,3)),choice(range(60,100)))
+        seq += "%d %d %d;"%(randomStart,timeSig,choice(range(60,100)))
     return seq
 
 def generateChord(timeSig):
@@ -33,3 +36,5 @@ def generateChord(timeSig):
 	Sequence {{{SEQ}}}
 End'''.format(VOICE = voice, OCTAVE = octave, SEQ = seq)
     return groveString
+
+#TODO - create generateDrum generatBase generateChordSass, generateLive, generateScaly, generateMusic
