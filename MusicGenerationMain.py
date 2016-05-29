@@ -11,7 +11,7 @@ f = file('out.mma','w')
 def write(line):
     f.writelines(line + '\n')
 
-def printChordProgression(chords, numChordsInBar = 1):
+def writeChordProgression(chords, numChordsInBar = 1):
 
     for i in range(0,len(chords)/numChordsInBar):
         write('\t'+ reduce(lambda x,y: x+" "+y, chords[i:i+numChordsInBar]))
@@ -23,34 +23,40 @@ def printChordProgression(chords, numChordsInBar = 1):
 
 tempo = randint(60,150)
 scale = choice(scales)
-
+timeSig = choice(timeSignatures)
 
 #write("tempo "+str(tempo))
 #write("KeySig " + scale)
-timeSig = choice(timeSignatures)
 write("Time "+ str(timeSig))
 write("")
 #write("Groove Metronome2-4")
 
 write("")
 write("")
-grooveName = "simpleGroove"
-write(createGroove(grooveName, timeSig))
-write('groove %s\n\n'%(grooveName))
-write("KeySig " + scale)
 
-printChordProgression(list(generateClassicChordsProgression(scale, 3)),2)
+aPartGroove = generateChord(timeSig)
+write(aPartGroove)
+write(createGroove("APart"))
+write('groove %s\n\n'%("APart"))
+write("KeySig " + scale)
+writeChordProgression(list(generateClassicChordsProgression(scale, 3)))
 
 #transition into course
+
+#write("SeqClear") This is
+write(generateChordSus())
+write(createGroove("BPart"))
+write('groove %s\n\n'%("BPart"))
 write("tempo "+str(int(tempo*1.1)))
 write("KeySig " + relativeScale(scale))
-#change groove?
-printChordProgression(list(generateClassicChordsProgression(scale, 3)),4)
+writeChordProgression(list(generateClassicChordsProgression(scale, 3)))
 
-#slow ending
+
+
+write('groove %s\n\n'%("APart"))
 write("tempo "+str(int(tempo*0.9)))
 write("KeySig " + scale)
-printChordProgression(list(generateClassicChordsProgression(scale, 3)), 1)
+writeChordProgression(list(generateClassicChordsProgression(scale, 3)))
 
 write('\t' + tonic(scale))  # end song with tonic
 
